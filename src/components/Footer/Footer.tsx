@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
@@ -21,11 +22,16 @@ const Footer = () => {
                 <div className="max-w-[1200px] mx-auto px-6">
                     {/* Border Frame */}
                     <div className="border border-white/20 rounded-lg px-8 md:px-16 py-10 md:py-12">
-                        {/* Centered Brand Name */}
-                        <div className="text-center mb-8">
-                            <h2 className="font-display italic text-white text-4xl md:text-5xl lg:text-6xl tracking-wider">
-                                Bloomsberry
-                            </h2>
+                        {/* Centered Logo */}
+                        <div className="flex flex-col items-center justify-center mb-8">
+                            <div className="relative w-64 h-20">
+                                <Image
+                                    src="/logo.png"
+                                    alt="Bloomsberry"
+                                    fill
+                                    className="object-contain brightness-0 invert"
+                                />
+                            </div>
                         </div>
 
                         {/* Navigation Links */}

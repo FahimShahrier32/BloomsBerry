@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLeaf, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faLeaf, faStar, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,14 +73,15 @@ const About = () => {
                             <motion.div
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                                className="relative aspect-square"
                             >
-                                <Image
-                                    src="/about-img.png"
-                                    alt="The Art of Coffee at Bloomsberry"
-                                    width={600}
-                                    height={600}
-                                    className="w-full h-auto object-cover"
-                                    priority
+                                <video
+                                    src="/videos/about-us.mp4"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-full h-full object-cover rounded-3xl"
                                 />
                             </motion.div>
                             {/* Decorative overlay */}
@@ -129,6 +130,16 @@ const About = () => {
                             Located in the heart of Dhanmondi, we offer a cozy and aesthetically pleasing environment
                             where friends, families, and loved ones can gather for peaceful moments.
                         </motion.p>
+
+                        <motion.div variants={itemVariants} className="pt-2">
+                            <Link
+                                href="/about"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-[#5F8F72] text-white rounded-full font-semibold hover:bg-[#4A7258] transition-all shadow-lg hover:shadow-[#5F8F72]/20 group"
+                            >
+                                Learn More
+                                <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
 
                         {/* Features */}
                         <motion.div

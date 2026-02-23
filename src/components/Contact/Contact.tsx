@@ -58,8 +58,8 @@ const contactDetails = [
     {
         icon: faPhone,
         label: 'Phone',
-        value: '01934-472047',
-        href: 'tel:01934-472047',
+        value: '+8801934-472047',
+        href: 'tel:+8801934-472047',
         isExternal: false,
     },
     {
@@ -85,14 +85,14 @@ const Contact = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        
+
         // Simulate form submission - replace with actual API call
         await new Promise(resolve => setTimeout(resolve, 1500));
-        
+
         setIsSubmitting(false);
         setIsSubmitted(true);
         setFormData({ name: '', email: '', phone: '', message: '' });
-        
+
         // Reset success message after 5 seconds
         setTimeout(() => setIsSubmitted(false), 5000);
     };
@@ -215,7 +215,7 @@ const Contact = () => {
                                     className="rounded-3xl"
                                 />
                             </div>
-                            
+
                             {/* Quick Directions Button */}
                             <motion.a
                                 href="https://maps.google.com/?q=Concord+Sohel+Square+Dhanmondi"
@@ -286,7 +286,7 @@ const Contact = () => {
                                                 name="phone"
                                                 value={formData.phone}
                                                 onChange={handleChange}
-                                                placeholder="Your phone number"
+                                                placeholder="+8801XXXXXXXXX"
                                                 className="bg-white border-[#AFC8B2]/30 focus:border-[#5F8F72] focus:ring-[#5F8F72]/20"
                                             />
                                         </div>

@@ -3,6 +3,7 @@ import { Poppins, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import ErrorBoundary from "@/components/ErrorBoundary/ErrorBoundary";
 import Analytics from "@/components/Analytics/Analytics";
+import FloatingActions from "@/components/FloatingActions/FloatingActions";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -69,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -86,6 +87,7 @@ export default function RootLayout({
           {children}
         </ErrorBoundary>
         <Analytics />
+        <FloatingActions />
       </body>
     </html>
   );

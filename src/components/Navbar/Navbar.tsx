@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import {
     Sheet,
@@ -92,11 +93,10 @@ const Navbar = () => {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ease-in-out ${
-                    isScrolled || !isHomePage
+                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ease-in-out ${isScrolled || !isHomePage
                         ? 'backdrop-blur-xl bg-[#2D3A2F]/90 border-b border-white/10 shadow-2xl py-3'
                         : 'bg-transparent py-5'
-                }`}
+                    }`}
             >
                 <div className="max-w-[1400px] mx-auto w-full px-4 md:px-8">
                     {/* Desktop Layout */}
@@ -113,14 +113,12 @@ const Navbar = () => {
                                             handleNavClick(item.href);
                                         }
                                     }}
-                                    className={`relative text-white font-body text-sm tracking-[0.2em] uppercase transition-all duration-300 group ${
-                                        isActive(item.href) ? 'text-[#AFC8B2]' : 'hover:text-[#AFC8B2]'
-                                    }`}
+                                    className={`relative text-white font-body text-sm tracking-[0.2em] uppercase transition-all duration-300 group ${isActive(item.href) ? 'text-[#AFC8B2]' : 'hover:text-[#AFC8B2]'
+                                        }`}
                                 >
                                     {item.name}
-                                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-[#AFC8B2] transition-all duration-300 ${
-                                        isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
-                                    }`} />
+                                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-[#AFC8B2] transition-all duration-300 ${isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                                        }`} />
                                 </Link>
                             ))}
                         </div>
@@ -128,58 +126,61 @@ const Navbar = () => {
                         {/* Center Logo */}
                         <div className="flex flex-col items-center justify-center">
                             <Link href="/" className="flex flex-col items-center group">
-                                <motion.div 
-                                    className={`font-display text-white tracking-wider transition-all duration-300 ${
-                                        isScrolled ? 'text-2xl' : 'text-3xl'
-                                    }`}
+                                <motion.div
+                                    className="relative transition-all duration-300"
+                                    animate={{
+                                        height: isScrolled ? 60 : 85,
+                                        width: isScrolled ? 220 : 300
+                                    }}
                                     whileHover={{ scale: 1.02 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                                 >
-                                    <span className="text-white">BLOOMS</span>
-                                    <span className="text-[#AFC8B2] italic">BERRY</span>
+                                    <Image
+                                        src="/logo.png"
+                                        alt="Bloomsberry"
+                                        fill
+                                        className="object-contain brightness-0 invert"
+                                        priority
+                                    />
                                 </motion.div>
-                                <span className={`font-body text-white/70 tracking-[0.25em] mt-1 transition-all duration-300 ${
-                                    isScrolled ? 'text-[9px] opacity-0' : 'text-[10px] opacity-100'
-                                }`}>
-                                    The Art of Coffee & Conversation
-                                </span>
                             </Link>
                         </div>
 
-                    {/* Right Navigation */}
-                    <div className="flex items-center justify-end gap-8">
-                        {rightNavItems.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                onClick={(e) => {
-                                    if (item.href.startsWith('/#')) {
-                                        e.preventDefault();
-                                        handleNavClick(item.href);
-                                    }
-                                }}
-                                className={`relative text-white font-body text-sm tracking-[0.2em] uppercase transition-all duration-300 group ${
-                                    isActive(item.href) ? 'text-[#AFC8B2]' : 'hover:text-[#AFC8B2]'
-                                }`}
-                            >
-                                {item.name}
-                                <span className={`absolute -bottom-1 left-0 h-[2px] bg-[#AFC8B2] transition-all duration-300 ${
-                                    isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
-                                }`} />
-                            </Link>
-                        ))}
-                    </div>
+                        {/* Right Navigation */}
+                        <div className="flex items-center justify-end gap-8">
+                            {rightNavItems.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    href={item.href}
+                                    onClick={(e) => {
+                                        if (item.href.startsWith('/#')) {
+                                            e.preventDefault();
+                                            handleNavClick(item.href);
+                                        }
+                                    }}
+                                    className={`relative text-white font-body text-sm tracking-[0.2em] uppercase transition-all duration-300 group ${isActive(item.href) ? 'text-[#AFC8B2]' : 'hover:text-[#AFC8B2]'
+                                        }`}
+                                >
+                                    {item.name}
+                                    <span className={`absolute -bottom-1 left-0 h-[2px] bg-[#AFC8B2] transition-all duration-300 ${isActive(item.href) ? 'w-full' : 'w-0 group-hover:w-full'
+                                        }`} />
+                                </Link>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Mobile Layout */}
                     <div className="md:hidden flex items-center justify-between">
-                        {/* Centered Logo */}
-                        <div className="flex-1 flex justify-center">
-                            <Link href="/" className="flex flex-col items-center">
-                                <div className="font-display text-white text-xl tracking-wider">
-                                    <span className="text-white">BLOOMS</span>
-                                    <span className="text-[#AFC8B2] italic">BERRY</span>
-                                </div>
+                        {/* Mobile Logo */}
+                        <div className="flex-1 flex justify-start">
+                            <Link href="/" className="relative w-40 h-14">
+                                <Image
+                                    src="/logo.png"
+                                    alt="Bloomsberry"
+                                    fill
+                                    className="object-contain brightness-0 invert"
+                                    priority
+                                />
                             </Link>
                         </div>
 
@@ -219,14 +220,15 @@ const Navbar = () => {
                             </SheetTrigger>
                             <SheetContent side="right" className="w-[320px] bg-[#2D3A2F] border-l border-[#AFC8B2]/20 p-0">
                                 <SheetHeader className="p-6 border-b border-[#AFC8B2]/20 bg-[#2D3A2F]/50">
-                                    <SheetTitle className="text-center">
-                                        <div className="font-display text-white text-2xl tracking-wider mb-1">
-                                            <span className="text-white">BLOOMS</span>
-                                            <span className="text-[#AFC8B2] italic">BERRY</span>
+                                    <SheetTitle className="flex justify-center">
+                                        <div className="relative w-48 h-16">
+                                            <Image
+                                                src="/logo.png"
+                                                alt="Bloomsberry"
+                                                fill
+                                                className="object-contain brightness-0 invert"
+                                            />
                                         </div>
-                                        <span className="font-body text-white/70 text-[10px] tracking-wider block">
-                                            The Art of Coffee & Conversation
-                                        </span>
                                     </SheetTitle>
                                 </SheetHeader>
 
@@ -242,9 +244,8 @@ const Navbar = () => {
                                                         handleNavClick(item.href);
                                                     }
                                                 }}
-                                                className={`px-6 py-4 text-white hover:bg-[#5F8F72]/20 transition-all duration-300 border-b border-[#AFC8B2]/10 font-body tracking-wider text-sm flex items-center justify-between group ${
-                                                    isActive(item.href) ? 'text-[#AFC8B2] bg-[#5F8F72]/10' : ''
-                                                }`}
+                                                className={`px-6 py-4 text-white hover:bg-[#5F8F72]/20 transition-all duration-300 border-b border-[#AFC8B2]/10 font-body tracking-wider text-sm flex items-center justify-between group ${isActive(item.href) ? 'text-[#AFC8B2] bg-[#5F8F72]/10' : ''
+                                                    }`}
                                             >
                                                 <span className="uppercase">{item.name}</span>
                                                 {isActive(item.href) && (

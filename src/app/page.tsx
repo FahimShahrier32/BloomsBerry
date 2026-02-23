@@ -5,7 +5,6 @@ import Menu from "@/components/Menu/Menu";
 import Gallery from "@/components/Gallery/Gallery";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
-import WhatsApp from "@/components/WhatsApp/WhatsApp";
 
 export default function Home() {
   const structuredData = {
@@ -15,7 +14,7 @@ export default function Home() {
     "image": "https://bloomsberry.com/og-image.jpg",
     "@id": "https://bloomsberry.com",
     "url": "https://bloomsberry.com",
-    "telephone": "+880 1234 567890",
+    "telephone": "+8801934-472047",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "House-04, Road-10, Dhanmondi",
@@ -62,7 +61,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-      <WhatsApp />
     </>
   );
 }
